@@ -260,7 +260,7 @@ chaincodeInvoke() {
             --peerAddresses localhost:7051 \
             --tlsRootCertFiles $PEER0_ORG1_CA \
             --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
-	    -c '{"function":"createOrg","Args":["{\"orgId\":\"org1\",\"orgName\":\"Microsoft\",\"email\":\"1234\",\"phone\":\"888888888\",\"status\":\"Active\",\"orgAdminId\":\"user1\",\"role\":\"Operator\"}"]}'
+	    -c '{"function":"createOrg","Args":["{\"orgId\":\"org1\",\"orgName\":\"Infosys\",\"email\":\"1234\",\"phone\":\"888888888\",\"status\":\"Active\",\"orgAdminId\":\"user1\",\"role\":\"Operator\"}"]}'
 
 }
 
@@ -273,12 +273,13 @@ chaincodeQuery() {
     # peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAllCars"]}'
 
     # Query Car by Id
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryCar","Args":["Car-1"]}'
+    #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryCar","Args":["Car-1"]}'
     #'{"Args":["GetSampleData","Key1"]}'
 
     # Query Private Car by Id
     # peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "readPrivateCar","Args":["1111"]}'
     # peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "readCarPrivateDetails","Args":["1111"]}'
+    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryOrgByID","Args":["org1"]}'
 }
 
 # chaincodeQuery
@@ -300,6 +301,6 @@ chaincodeQuery() {
 #chaincodeInvokeInit
 
 #sleep 5
-chaincodeInvoke
+#chaincodeInvoke
 #sleep 3
-#chaincodeQuery
+chaincodeQuery
